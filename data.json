@@ -1,0 +1,14 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "fname": "Santosh",
+      "lname": "Ganesh ",
+      "gender": "Male",
+      "phone": "8999427831",
+      "email": "santosh8999@uboi",
+      "address": "kIWALEGAON PUNE",
+      "families": []
+    }
+  ]
+}

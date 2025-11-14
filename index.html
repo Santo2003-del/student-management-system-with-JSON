@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Management System </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    
+    <div class="form-box">
+        <h3>Student Registration Form</h3>
+
+        <form id="studentForm" style="all: unset; display: contents;">
+
+            <label>First Name</label>
+            <input type="text" id="firstName" placeholder="Enter first name">
+
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Enter last name">
+
+            <label>Gender</label>
+            <select id="gender">
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+
+            <label>Phone</label>
+            <input type="text" id="phone" placeholder="Enter phone number">
+
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter email address">
+
+            <label>Address</label>
+            <textarea id="address" rows="2" placeholder="Enter address"></textarea>
+
+            <div class="button-row">
+                <button class="btn" type="button" id="saveStudentBtn">Save</button>
+                <button class="btn" type="reset" id="resetStudentBtn">Reset</button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- ===== Student Table ===== -->
+    <div class="table-box">
+
+        <div class="table-controls">
+            <div>
+                <label>Rows per page:</label>
+                <select id="rowsPerPage">
+                    <option>5</option>
+                    <option>10</option>
+                    <option>15</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Search:</label>
+                <input type="text" id="searchStudent" placeholder="Search...">
+            </div>
+
+            <button class="btn" onclick="downloadData()">Download JSON</button>
+        </div>
+
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th>Sr.No</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="pagination-box" style="margin-top:10px; text-align:center;">
+            <button class="btn" id="prevButton">« Prev</button>
+            <span id="pageText">Page 1 of 1</span>
+            <button class="btn" id="nextButton">Next »</button>
+        </div>
+
+        <p id="totalBox" style="text-align:center; margin-top:10px;">Total Records: 0</p>
+
+    </div>
+
+</div> 
+
+<! Family  Members -->
+<div id="familyPopup" class="popup">
+  <div class="popup-content">
+
+    <div class="popup-header">
+      <h3>Family Members Details</h3>
+      <span class="close-btn" onclick="closeFamily()">×</span>
+    </div>
+
+    <form id="familyForm" style="display: contents;">
+      <div class="input-row">
+        <input type="text" id="memberName" placeholder="Full Name">
+        <input type="text" id="relation" placeholder="Relation">
+        <input type="text" id="memberPhone" placeholder="Phone Number">
+      </div>
+    </form>
+
+    <div class="button-row">
+      <button class="btn" id="saveFamilyBtn">Save</button>
+      <button class="btn" id="clearFamilyBtn" type="reset">Clear</button>
+    </div>
+
+    <div class="table-controls">
+      <div>
+        <label>Rows per page:</label>
+        <select id="familyRows">
+          <option>5</option>
+          <option>10</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Search:</label>
+        <input type="text" id="searchFamily" placeholder="Search family...">
+      </div>
+    </div>
+
+    <table id="familyTable">
+      <thead>
+        <tr>
+          <th>Sr.No</th>
+          <th>Name</th>
+          <th>Relation</th>
+          <th>Phone</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div id="familyPagination" class="pagination-box" style="margin-top:10px; text-align:center;"></div>
+
+    <p id="familyTotal" style="text-align:center; margin-top:10px;">Total Records: 0</p>
+
+  </div>
+</div>
+
+<!-- Education Details -->
+  <div id="educationPopup" class="popup">
+  <div class="popup-content">
+
+    <div class="popup-header">
+      <h3>Education Details</h3>
+      <span class="close-btn" onclick="closeEducation()">×</span>
+    </div>
+
+    <form id="educationForm" style="display: contents;">
+      <div class="input-row">
+        <input type="text" id="className" placeholder="Class">
+        <input type="text" id="subject" placeholder="Subject">
+        <input type="text" id="marks" placeholder="Marks">
+      </div>
+    </form>
+
+    <div class="button-row">
+      <button class="btn" id="saveEduBtn">Save</button>
+      <button class="btn" id="clearEduBtn" type="reset">Clear</button>
+    </div>
+
+    <div class="table-controls">
+      <div>
+        <label>Rows per page:</label>
+        <select id="eduRows">
+          <option>5</option>
+          <option>10</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Search:</label>
+        <input type="text" id="searchEdu" placeholder="Search education...">
+      </div>
+    </div>
+
+    <table id="educationTable">
+      <thead>
+        <tr>
+          <th>Sr.No</th>
+          <th>Class</th>
+          <th>Subject</th>
+          <th>Marks</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div id="eduPagination" class="pagination-box" style="text-align:center; margin-top:10px;"></div>
+    <p id="eduTotal" class="center-text" style="text-align:center; margin-top:10px;">Total Records: 0</p>
+
+  </div>
+</div>
+
+<!-- ===================== VIEW POPUP ===================== -->
+<div id="viewPopup" class="popup">
+  <div class="popup-content">
+
+    <div class="popup-header">
+      <h3>Student Full Details</h3>
+      <span class="close-btn" onclick="closeView()">×</span>
+    </div>
+
+    <div id="viewContainer"></div>
+
+  </div>
+</div>
+<!-- ================== END VIEW POPUP ================== -->
+
+
+
+
+  <script src="student.js"></script>
+  <script src="family.js"></script>
+  <script src="education.js"></script>
+  <script src="view.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
