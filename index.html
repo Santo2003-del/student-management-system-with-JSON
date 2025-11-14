@@ -44,8 +44,7 @@
 
         </form>
     </div>
-
-    <!-- ===== Student Table ===== -->
+<!--Student Table -->
     <div class="table-box">
 
         <div class="table-controls">
@@ -94,7 +93,7 @@
 
 </div> 
 
-<! Family  Members -->
+  <!-- Family  Members -->
 <div id="familyPopup" class="popup">
   <div class="popup-content">
 
@@ -150,7 +149,6 @@
 
   </div>
 </div>
-
 <!-- Education Details -->
   <div id="educationPopup" class="popup">
   <div class="popup-content">
@@ -162,9 +160,9 @@
 
     <form id="educationForm" style="display: contents;">
       <div class="input-row">
-        <input type="text" id="className" placeholder="Class">
-        <input type="text" id="subject" placeholder="Subject">
-        <input type="text" id="marks" placeholder="Marks">
+<input type="text" id="className" placeholder="Class">
+    <input type="text" id="subject" placeholder="Subject">
+       <input type="text" id="marks" placeholder="Marks">
       </div>
     </form>
 
@@ -178,13 +176,13 @@
         <label>Rows per page:</label>
         <select id="eduRows">
           <option>5</option>
-          <option>10</option>
+        <option>10</option>
         </select>
       </div>
 
       <div>
         <label>Search:</label>
-        <input type="text" id="searchEdu" placeholder="Search education...">
+      <input type="text" id="searchEdu" placeholder="Search education...">
       </div>
     </div>
 
@@ -202,17 +200,16 @@
     </table>
 
     <div id="eduPagination" class="pagination-box" style="text-align:center; margin-top:10px;"></div>
-    <p id="eduTotal" class="center-text" style="text-align:center; margin-top:10px;">Total Records: 0</p>
+  <p id="eduTotal" class="center-text" style="text-align:center; margin-top:10px;">Total Records: 0</p>
 
   </div>
 </div>
-
-<!-- ===================== VIEW POPUP ===================== -->
+  <!--view Student-->
 <div id="viewPopup" class="popup">
   <div class="popup-content">
 
     <div class="popup-header">
-      <h3>Student Full Details</h3>
+    <h3>Student Full Details</h3>
       <span class="close-btn" onclick="closeView()">×</span>
     </div>
 
@@ -220,11 +217,6 @@
 
   </div>
 </div>
-<!-- ================== END VIEW POPUP ================== -->
-
-
-
-
   <script src="student.js"></script>
   <script src="family.js"></script>
   <script src="education.js"></script>
@@ -232,3 +224,4 @@
   <script src="main.js"></script>
 </body>
 </html>
+
