@@ -27,7 +27,7 @@ const clearEduBtn = document.getElementById("clearEduBtn");
 const eduForm = document.getElementById("educationForm");
 
 
-// ========= SIMPLE NUMERIC EDUCATION ID =========
+// genarate  eduction id 
 function generateEduId(educations) {
     if (!educations || educations.length === 0) return 1;
 
@@ -38,26 +38,18 @@ function generateEduId(educations) {
     }
     return max + 1;
 }
-
-
-// ========= OPEN EDUCATION POPUP =========
+//open education ppop-up
 function openEducation(fid) {
 
     const s = window.studentList[activeStudentIndex];
-
-    // FIX 1: store real family index
     activeFamilyIndex = fid;
-
-    // FIX 2: get correct family
+    
     const fam = s.families[fid];
-
     if (!fam) {
         console.error("Family not found:", fid);
         return;
     }
-
     if (!fam.educations) fam.educations = [];
-
     activeFamily = fam;
     filteredEdu = fam.educations;
 
@@ -68,37 +60,30 @@ function openEducation(fid) {
 }
 
 
-// ========= CLOSE POPUP =========
+//close pop-up
 function closeEducation() {
     eduPopup.style.display = "none";
     resetEducationForm();
 }
 
-
-// ========= SAVE / UPDATE EDUCATION =========
 saveEduBtn.onclick = function () {
-
     const cls = classInput.value.trim();
     const sub = subjectInput.value.trim();
     const mark = marksInput.value.trim();
-
+    
     if (!cls || !sub || !mark) {
         alert("Please fill all fields");
         return;
     }
-
     const newEdu = {
         eid: generateEduId(activeFamily.educations),
         degree: cls,
         year: sub,
         percentage: mark
     };
-
-    // ADD NEW EDUCATION
     if (editEduIndex === null) {
         activeFamily.educations.push(newEdu);
     }
-    // UPDATE EXISTING
     else {
         const old = activeFamily.educations[editEduIndex];
 
@@ -116,8 +101,6 @@ saveEduBtn.onclick = function () {
     showEducation();
 };
 
-
-// ========= SHOW EDUCATION TABLE =========
 function showEducation() {
     const list = filteredEdu;
     const total = list.length;
@@ -159,8 +142,6 @@ function showEducation() {
     eduTotalBox.textContent = `Total Records: ${total}`;
 }
 
-
-// ========= EDIT EDUCATION =========
 function editEducation(i) {
     const e = activeFamily.educations[i];
 
@@ -171,9 +152,6 @@ function editEducation(i) {
     editEduIndex = i;
     saveEduBtn.textContent = "Update";
 }
-
-
-// ========= DELETE EDUCATION =========
 function deleteEducation(i) {
     if (confirm("Delete this record?")) {
         activeFamily.educations.splice(i, 1);
@@ -182,8 +160,6 @@ function deleteEducation(i) {
     }
 }
 
-
-// ========= SEARCH EDUCATION =========
 eduSearchInput.oninput = function () {
     eduSearchText = eduSearchInput.value.toLowerCase().trim();
 
@@ -198,16 +174,12 @@ eduSearchInput.oninput = function () {
     showEducation();
 };
 
-
-// ========= ROWS PER PAGE =========
 eduRowsDropdown.onchange = function () {
     eduRows = parseInt(eduRowsDropdown.value);
     eduPage = 1;
     showEducation();
 };
 
-
-// ========= PAGINATION =========
 function updateEduPagination() {
     const totalPages = Math.ceil(filteredEdu.length / eduRows);
 
@@ -233,15 +205,13 @@ function nextEduPage() {
         showEducation();
     }
 }
-
-
-// ========= RESET FORM (NEW) =========
 function resetEducationForm() {
-    eduForm.reset();                // clears input fields
-    editEduIndex = null;            // clear edit mode
+    eduForm.reset();              
+    editEduIndex = null;            
     saveEduBtn.textContent = "Save";
 }
 
 clearEduBtn.onclick = function () {
     resetEducationForm();
 };
+
