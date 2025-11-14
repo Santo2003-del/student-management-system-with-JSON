@@ -102,9 +102,7 @@ function sectionHTML(title, rows, search, table, prev, page, next, total) {
         <p id="${total}">Total Records: 0</p>
     </div>`;
 }
-
-/* ---------------- FAMILY SECTION ---------------- */
-
+//family section
 function filterViewFamilies() {
     let list = viewStudent.families || [];
     if (!viewFamSearch) return list;
@@ -172,7 +170,6 @@ function showViewFamily() {
     document.getElementById("vFamNext").disabled = viewFamPage === totalPages;
 }
 
-/* ---------------- EDUCATION SECTION ---------------- */
 
 function flattenEducations() {
     const fam = viewStudent.families || [];
@@ -183,9 +180,9 @@ function flattenEducations() {
         for (let j = 0; j < e.length; j++) {
             temp.push({
                 member: fam[i].memberName,
-                degree: e[j].degree,
-                year: e[j].year,
-                percentage: e[j].percentage
+                class: e[j].class,
+                subject: e[j].subject,
+                mark: e[j].mark
             });
         }
     }
@@ -203,8 +200,8 @@ function filterViewEducation() {
         let e = list[i];
         if (
             e.member.toLowerCase().includes(t) ||
-            e.degree.toLowerCase().includes(t) ||
-            e.year.toLowerCase().includes(t)
+            e.class.toLowerCase().includes(t) ||
+            e.subject.toLowerCase().includes(t)
         ) {
             out.push(e);
         }
@@ -246,9 +243,9 @@ function showViewEducation() {
             <tr>
                 <td>${sr}</td>
                 <td>${e.member}</td>
-                <td>${e.degree}</td>
-                <td>${e.year}</td>
-                <td>${e.percentage}</td>
+                <td>${e.class}</td>
+                <td>${e.subject}</td>
+                <td>${e.mark}</td>
             </tr>
         `;
         sr++;
@@ -261,7 +258,6 @@ function showViewEducation() {
     document.getElementById("vEduNext").disabled = viewEduPage === totalPages;
 }
 
-/* ---------------- EVENTS ---------------- */
 
 function bindViewEvents() {
     const famRows = document.getElementById("vFamRows");
@@ -332,3 +328,4 @@ function bindViewEvents() {
         }
     };
 }
+
