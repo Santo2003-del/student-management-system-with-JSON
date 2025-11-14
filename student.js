@@ -1,4 +1,4 @@
-// ===== Variables =====
+
 let currentPage = 1;
 let rowsPerPage = parseInt(document.getElementById("rowsPerPage").value);
 let searchText = "";
@@ -23,8 +23,7 @@ const nextButton = document.getElementById("nextButton");
 const pageText = document.getElementById("pageText");
 const totalBox = document.getElementById("totalBox");
 
-
-// ========= SIMPLE NUMERIC ID GENERATOR =========
+//id genrater
 function generateStudentId() {
   const students = window.studentList || [];
 
@@ -45,7 +44,7 @@ function generateStudentId() {
 }
 
 
-// ========= SAVE / UPDATE STUDENT =========
+//save student data
 saveBtn.onclick = function () {
   const fname = firstNameInput.value;
   const lname = lastNameInput.value;
@@ -53,10 +52,7 @@ saveBtn.onclick = function () {
   const phone = phoneInput.value;
   const email = emailInput.value;
   const address = addressInput.value;
-
-  // same simple behaviour, just keep id + families correctly
   if (window.selectedStudentIndex === null) {
-    // ADD NEW STUDENT
     const s = {
       id: generateStudentId(),
       fname: fname,
@@ -69,7 +65,6 @@ saveBtn.onclick = function () {
     };
     window.studentList.push(s);
   } else {
-    // UPDATE EXISTING STUDENT (keep old id + families)
     const old = window.studentList[window.selectedStudentIndex] || {};
     const updated = {
       id: old.id || generateStudentId(),
@@ -91,8 +86,7 @@ saveBtn.onclick = function () {
   showStudents();
 };
 
-
-// this function use to display table
+//show studentdata on screen
 function showStudents() {
   const list = searchText ? filteredStudents : window.studentList;
 
@@ -100,7 +94,6 @@ function showStudents() {
   let start = (currentPage - 1) * rowsPerPage;
   let end = start + rowsPerPage;
 
-  // if we deleted records and current page is out of range
   if (start >= total && total > 0) {
     currentPage = Math.ceil(total / rowsPerPage);
     start = (currentPage - 1) * rowsPerPage;
@@ -113,7 +106,6 @@ function showStudents() {
   let sr = start + 1;
 
   part.forEach(function (s, i) {
-    // find real index of this student in main studentList
     const realIndex = window.studentList.indexOf(s);
 
     studentTableBody.innerHTML += `
@@ -218,9 +210,8 @@ rowsDropdown.onchange = function () {
   showStudents();
 };
 
-
-// extra: when user clicks Reset manually, exit edit mode too
 resetBtn.onclick = function () {
   window.selectedStudentIndex = null;
   saveBtn.textContent = "Save";
 };
+
