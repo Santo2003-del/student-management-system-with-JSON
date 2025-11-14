@@ -24,7 +24,7 @@ const clearFamilyBtn = document.getElementById("clearFamilyBtn");
 const familyForm = document.getElementById("familyForm");
 
 
-// ========= SIMPLE NUMERIC FAMILY ID =========
+// ganerate  family id to this
 function generateFamilyId(families) {
     if (!families || families.length === 0) return 1;
 
@@ -37,7 +37,7 @@ function generateFamilyId(families) {
 }
 
 
-// ========= OPEN POPUP =========
+//open family pop-up  to this
 function openFamily(index) {
     activeStudentIndex = index;
 
@@ -50,16 +50,12 @@ function openFamily(index) {
     showFamilies();
     familyPopup.style.display = "flex";
 }
-
-
-// ========= CLOSE POPUP =========
+//close pop-up
 function closeFamily() {
     familyPopup.style.display = "none";
     resetFamilyForm();
 }
-
-
-// ========= SAVE / UPDATE FAMILY =========
+//save falily deatils too  it
 saveFamilyBtn.onclick = function () {
     const name = memberNameInput.value.trim();
     const rel = relationInput.value.trim();
@@ -79,15 +75,11 @@ saveFamilyBtn.onclick = function () {
         phone: phone,
         educations: []
     };
-
-    // ADD
     if (editingFamilyIndex === null) {
         s.families.push(newFamily);
     }
-    // UPDATE
     else {
         const old = s.families[editingFamilyIndex];
-
         s.families[editingFamilyIndex] = {
             fid: old.fid,
             memberName: name,
@@ -96,14 +88,11 @@ saveFamilyBtn.onclick = function () {
             educations: old.educations || []
         };
     }
-
     resetFamilyForm();
     filteredFamilies = s.families;
     showFamilies();
 };
-
-
-// ========= FAMILY TABLE =========
+//show family table
 function showFamilies() {
     const list = filteredFamilies;
     const total = list.length;
@@ -116,12 +105,9 @@ function showFamilies() {
         start = (familyPage - 1) * familyRows;
         end = start + familyRows;
     }
-
     const part = list.slice(start, end);
-
     familyTableBody.innerHTML = "";
     let sr = start + 1;
-
     part.forEach((f, i) => {
         const realIndex = window.studentList[activeStudentIndex].families.indexOf(f);
 
@@ -144,9 +130,6 @@ function showFamilies() {
     updateFamilyPagination();
     familyTotalBox.textContent = `Total Records: ${total}`;
 }
-
-
-// ========= EDIT FAMILY =========
 function editFamily(i) {
     const s = window.studentList[activeStudentIndex];
     const f = s.families[i];
@@ -159,8 +142,6 @@ function editFamily(i) {
     saveFamilyBtn.textContent = "Update";
 }
 
-
-// ========= DELETE FAMILY =========
 function deleteFamily(i) {
     const s = window.studentList[activeStudentIndex];
 
@@ -171,11 +152,9 @@ function deleteFamily(i) {
     }
 }
 
-
-// ========= SEARCH =========
 familySearchInput.oninput = function () {
-    const s = window.studentList[activeStudentIndex];
-    const t = familySearchInput.value.toLowerCase().trim();
+ const s = window.studentList[activeStudentIndex];
+ const t = familySearchInput.value.toLowerCase().trim();
 
     filteredFamilies = s.families.filter(f => {
         return (
@@ -189,16 +168,12 @@ familySearchInput.oninput = function () {
     showFamilies();
 };
 
-
-// ========= ROWS PER PAGE =========
 familyRowsDropdown.onchange = function () {
     familyRows = parseInt(familyRowsDropdown.value);
     familyPage = 1;
     showFamilies();
 };
 
-
-// ========= PAGINATION =========
 function updateFamilyPagination() {
     const totalPages = Math.ceil(filteredFamilies.length / familyRows);
 
@@ -224,14 +199,13 @@ function nextFamilyPage() {
     }
 }
 
-
-// ========= RESET METHOD (NEW) =========
 function resetFamilyForm() {
-    familyForm.reset();              // clears inputs
-    editingFamilyIndex = null;       // stop edit mode
+    familyForm.reset();            
+    editingFamilyIndex = null;       
     saveFamilyBtn.textContent = "Save";
 }
 
 clearFamilyBtn.onclick = function () {
     resetFamilyForm();
 };
+
